@@ -10,7 +10,10 @@
 <h1> Menu </h1>
 <h1> Bienvenue ${login}</h1>
 
+<div>
+    <a href="/ctrl?action=goToCreerProjet"> Creer un nouveau projet </a>
 
+</div>
 <table>
     <tr>
         <th>Mes Compétences</th>

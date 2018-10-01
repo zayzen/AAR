@@ -11,9 +11,7 @@ public class Membre {
     private HashSet<Projet> participation;
     private HashSet<CompetenceMembre> mesCompetences;
 
-
-
-    //Consctructeur
+    // Constructor
     public Membre(String login, String motdepasse, String surnom) {
         this.login = login;
         this.motdepasse = motdepasse;

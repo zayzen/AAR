@@ -4,8 +4,6 @@ import modele.Competence;
 import modele.CompetenceMembre;
 import modele.Membre;
 import modele.Projet;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -15,9 +13,9 @@ public class Facade {
     
     private static Facade instance = new Facade();
 
-    @Getter @Setter private HashSet<Membre> lesMembres;
-    @Getter @Setter private HashSet<Projet> lesProjets;
-    @Getter @Setter private HashSet<Competence> lesCompetences;
+    private HashSet<Membre> lesMembres;
+    private HashSet<Projet> lesProjets;
+    private HashSet<Competence> lesCompetences;
 
 
     public Facade() {
@@ -95,6 +93,16 @@ public class Facade {
         return null;
     }
 
+    public Competence getCompetenceByIntitule(String login){
+        for (Competence c : lesCompetences)
+        {
+            if(c.getIntituleC().equals(login)){
+                return c;
+            }
+        }
+        return null;
+    }
+
 
     public boolean inscription(String login, String mdp, String surnom){
         for (Membre m : lesMembres)
@@ -119,5 +127,28 @@ public class Facade {
         return true;
     }
 */
+    // Getters & Setters
+    public HashSet<Membre> getLesMembres() {
+        return lesMembres;
+    }
 
+    public void setLesMembres(HashSet<Membre> lesMembres) {
+        this.lesMembres = lesMembres;
+    }
+
+    public HashSet<Projet> getLesProjets() {
+        return lesProjets;
+    }
+
+    public void setLesProjets(HashSet<Projet> lesProjets) {
+        this.lesProjets = lesProjets;
+    }
+
+    public HashSet<Competence> getLesCompetences() {
+        return lesCompetences;
+    }
+
+    public void setLesCompetences(HashSet<Competence> lesCompetences) {
+        this.lesCompetences = lesCompetences;
+    }
 }

@@ -10,7 +10,10 @@
 <h1> Menu </h1>
 <h1> Bienvenue ${login}</h1>
 
+<div>
+    <a href="/ctrl?action=goToCreerProjet"> Creer un nouveau projet </a>
 
+</div>
 <table>
     <tr>
         <th>Mes Compétences</th>
@@ -19,7 +22,7 @@
         <td>Intitulé</td>
         <td>Niveau</td>
         <td>Commentaire</td>
-    <c:forEach items="${mesCompetences}" var="competence">
+        <c:forEach items="${mesCompetences}" var="competence">
     <tr>
         <td>${competence.competence.intituleC}</td>
         <td>${competence.niveau}</td>
@@ -34,15 +37,22 @@
 <table>
     <tr>
         <th>Mes Projets</th>
+    </tr>
+    <tr>
+        <td>Intitulé</td>
+        <td>Description</td>
         <td></td>
         <c:forEach items="${mesProjets}" var="projet">
     <tr>
-        <td>${projet.intituleP}</td>>
-        <td>${projet.description}</td>>
+        <td>${projet.intituleP}</td>
+
+        <td>${projet.description}</td>
+
     </tr>
     </c:forEach>
-    </tr>
+
 </table>
-</form>
+
+
 </body>
 </html>
