@@ -15,7 +15,7 @@ JSP minimaliste est invocable directement
     <p> Login : </p> <input type="text" name="login" />
     <p> Motdepasse : </p> <input type="text" name="mdp" />
     <!--<input type="hidden" value="inscription" name="action"/>-->
-    <button type="submit" value="connection" name="action"> Valider </button>
+    <button type="submit" value="connexion" name="action"> Valider </button>
     <button type="submit" value="inscription" name="action"> Inscription </button>
 </form>
 

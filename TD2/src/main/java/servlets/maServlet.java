@@ -2,6 +2,7 @@ package servlets;
 
 import facade.Facade;
 
+import modele.Membre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
@@ -35,26 +36,46 @@ public class maServlet extends HttpServlet {
         System.out.print(param);
 
         switch (param){
-            case "inscription": request.getRequestDispatcher("/WEB-INF/inscription.jsp").forward(request, response); break;
 
-            case "creerMembre": String login = request.getParameter("login");
-                String mdp = request.getParameter("mdp");
-                String surnom = request.getParameter("surnom");
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
-                boolean co = maFacade.inscription(login, mdp, surnom);
-                if ()
+            case "inscription":
+                request.getRequestDispatcher("/WEB-INF/inscription.jsp").forward(request, response);
                 break;
-
+            case "creerMembre":
+                creerMembre(request,response);
+                break;
             case "connexion":
-                String loginC = request.getParameter("login");
-                String mdpC = request.getParameter("mdp");
-                boolean co = maFacade.connexion(loginC,mdpC);
-                if(co) request.getRequestDispatcher("/WEB-INF/menu.jsp").forward(request, response);
-                else    request.getRequestDispatcher("index.jsp").forward(request,response);
+                connexion(request,response);
                 break;
         }
 
     }
+
+    private void connexion (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String login = request.getParameter("login");
+        String mdp = request.getParameter("mdp");
+        boolean co = maFacade.connexion(login,mdp);
+
+        if(co){
+            Membre aConnecter = maFacade.getMembreByLogin(login);
+            request.getSession().setAttribute("login", aConnecter.getSurnom());
+            request.getSession().setAttribute("mesProjets", aConnecter.getMesProjets()); 
+            request.getSession().setAttribute("mesParticipations", aConnecter.getParticipation());
+            request.getSession().setAttribute("mesCompetences", aConnecter.getMesCompetences());
+            request.getRequestDispatcher("/WEB-INF/menu.jsp").forward(request, response);
+        }
+        else    request.getRequestDispatcher("index.jsp").forward(request,response);
+    }
+
+    private void creerMembre (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String login = request.getParameter("login");
+        String mdp = request.getParameter("mdp");
+        String surnom = request.getParameter("surnom");
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        boolean cm = maFacade.inscription(login, mdp, surnom);
+
+    }
+
+
 
 
 

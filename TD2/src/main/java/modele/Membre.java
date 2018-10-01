@@ -8,8 +8,9 @@ public class Membre {
     private String motdepasse;
     private String surnom;
     private HashSet<Projet> mesProjets;
-    private HashSet<Projet> ProjetsParticipative;
-    private HashSet<Competence> mesCompetences;
+    private HashSet<Projet> participation;
+    private HashSet<CompetenceMembre> mesCompetences;
+
 
 
     //Consctructeur
@@ -18,8 +19,8 @@ public class Membre {
         this.motdepasse = motdepasse;
         this.surnom = surnom;
         mesProjets = new HashSet<>();
+        participation = new HashSet<>();
         mesCompetences = new HashSet<>();
-        ProjetsParticipative = new HashSet<>();
     }
 
     // Getters & Setters
@@ -42,5 +43,26 @@ public class Membre {
     }
     public void setSurnom(String surnom) {
         this.surnom = surnom;
+    }
+
+    public HashSet<Projet> getMesProjets() {
+        return mesProjets;
+    }
+    public void setMesProjets(HashSet<Projet> mesProjets) {
+        this.mesProjets = mesProjets;
+    }
+
+    public HashSet<Projet> getParticipation() {
+        return participation;
+    }
+    public void setParticipation(HashSet<Projet> participation) {
+        this.participation = participation;
+    }
+
+    public HashSet<CompetenceMembre> getMesCompetences() {
+        return mesCompetences;
+    }
+    public void setMesCompetences(HashSet<CompetenceMembre> mesCompetences) {
+        this.mesCompetences = mesCompetences;
     }
 }
