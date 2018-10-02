@@ -1,7 +1,0 @@
-servlets\maServlet.class
-modele\Competence.class
-modele\CompetenceMembre.class
-modele\Projet.class
-modele\Membre.class
-Exception\LoginDejaPrisException.class
-facade\Facade.class
