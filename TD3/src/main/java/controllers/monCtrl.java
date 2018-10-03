@@ -1,17 +1,13 @@
 package controllers;
 
 import facade.iFacade;
-import formulaire.LoginForm;
-import formulaire.ProjetForm;
+import formulaire.*;
 import modele.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Iterator;
 
 @Controller
 @SessionAttributes("membreCourant")
@@ -21,9 +17,35 @@ public class monCtrl {
     @Autowired
     private iFacade maFacade;
 
+    // Redirection
     @GetMapping(value = "/")
     public String root() {
         return "index";
+    }
+
+    @GetMapping(value = "/goToCreerProjet")
+    public String goToCreerProjet(Model model) {
+        model.addAttribute("lesCompetences",maFacade.getLesCompetences());
+        return "creerProjet";
+    }
+
+    @GetMapping(value = "/goToInscription")
+    public String goToInscription(Model model) {
+        return "inscription";
+    }
+
+    // Form
+    @PostMapping(value = "/creerMembre")
+    public String creerMembre(MembreFrom aInscrire) {
+
+        String login = aInscrire.getLogin();
+        String mdp = aInscrire.getMotdepasse();
+        String surnom = aInscrire.getSurnom();
+
+        boolean ok = maFacade.inscription(login,mdp,surnom);
+        if(ok) return "index";
+        else return "inscription";
+
     }
 
     @PostMapping(value = "/connexion")
@@ -36,15 +58,9 @@ public class monCtrl {
             Membre m = maFacade.getMembreByLogin(aConnecter.getLogin());
             model.addAttribute("membreCourant",m);
             return "menu";
-           }
+        }
         else return "index";
 
-    }
-
-    @GetMapping(value = "/goToCreerProjet")
-    public String goToCreerProjet(Model model) {
-        model.addAttribute("lesCompetences",maFacade.getLesCompetences());
-        return "creerProjet";
     }
 
     @PostMapping(value = "/creerProjet")

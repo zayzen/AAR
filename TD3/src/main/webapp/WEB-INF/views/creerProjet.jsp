@@ -11,18 +11,18 @@
 <head>
     <title>Création Projet</title>
 <body>
-<h1> Creation Projet</h1>
+<h1> Création Projet</h1>
 <form action="/creerProjet" method="post">
-    <p> Intitulé : </p> <input type="text" name="intitule" />
-    <p> Description : </p> <input type="text" name="description" />
+    <p> Intitulé : </p> <input type="text" name="intitule"/>
+    <p> Description : </p> <input type="text" name="description"/>
     <p> Compétences nécessaires : </p>
-    <select name = "competencesNecessaires" multiple="multiple">
+    <select name="competencesNecessaires" multiple="multiple">
         <c:forEach items="${lesCompetences}" var="competence">
             <option value="${competence.intituleC}">${competence.intituleC}</option>
         </c:forEach>
     </select>
 
-    <button type="submit"> Valider </button>
+    <button type="submit"> Valider</button>
 
 </form>
 </body>
