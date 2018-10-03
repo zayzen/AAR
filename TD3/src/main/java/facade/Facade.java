@@ -1,12 +1,8 @@
 package facade;
 
-import modele.Competence;
-import modele.CompetenceMembre;
-import modele.Membre;
-import modele.Projet;
+import modele.*;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.*;
 
 @Service
@@ -47,11 +43,11 @@ public class Facade implements iFacade {
         y.getMesCompetences().add(new CompetenceMembre(4,"Pro",dotnet));
 
         // Les Projets
-        Projet a = new Projet("Front", "Modification du Css");
+        Projet a = new Projet(m,"Front", "Modification du Css");
         a.getCompetencesNecessaire().add(chef);
         a.getCompetencesNecessaire().add(css);
 
-        Projet b = new Projet("Site web", "Creation d'un site web");
+        Projet b = new Projet(m,"Site web", "Creation d'un site web");
         b.getCompetencesNecessaire().add(chef);
         b.getCompetencesNecessaire().add(java);
         b.getCompetencesNecessaire().add(dotnet);
@@ -61,7 +57,7 @@ public class Facade implements iFacade {
         // Assignation projet
         m.getMesProjets().add(a);
         m.getMesProjets().add(b);
-        y.getParticipation().add(a);
+        y.getMesParticipations().add(a);
 
 
     }
@@ -115,18 +111,7 @@ public class Facade implements iFacade {
         return true;
 
     }
-/*
-    public Boolean inscription(String login, String mdp, String surnom){
-        if (lesMembres.containsKey(login))
-        {
-            return false;
-        }
-        else {
-            lesMembres.put("login", new Membre(login,mdp,surnom));
-        }
-        return true;
-    }
-*/
+
     // Getters
     public HashSet<Membre> getLesMembres() {
         return lesMembres;

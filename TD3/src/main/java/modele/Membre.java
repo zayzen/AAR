@@ -1,8 +1,5 @@
 package modele;
 
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 
 public class Membre {
@@ -11,7 +8,7 @@ public class Membre {
     private String motdepasse;
     private String surnom;
     private HashSet<Projet> mesProjets;
-    private HashSet<Projet> participation;
+    private HashSet<Projet> mesParticipations;
     private HashSet<CompetenceMembre> mesCompetences;
 
     // Constructor
@@ -19,9 +16,9 @@ public class Membre {
         this.login = login;
         this.motdepasse = motdepasse;
         this.surnom = surnom;
-        mesProjets = new HashSet<>();
-        participation = new HashSet<>();
-        mesCompetences = new HashSet<>();
+        this.mesProjets = new HashSet<>();
+        this.mesParticipations = new HashSet<>();
+        this.mesCompetences = new HashSet<>();
     }
 
 
@@ -54,11 +51,11 @@ public class Membre {
         this.mesProjets = mesProjets;
     }
 
-    public HashSet<Projet> getParticipation() {
-        return participation;
+    public HashSet<Projet> getMesParticipations() {
+        return mesParticipations;
     }
-    public void setParticipation(HashSet<Projet> participation) {
-        this.participation = participation;
+    public void setMesParticipations(HashSet<Projet> mesParticipations) {
+        this.mesParticipations = mesParticipations;
     }
 
     public HashSet<CompetenceMembre> getMesCompetences() {

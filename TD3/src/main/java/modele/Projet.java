@@ -1,18 +1,19 @@
 package modele;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Projet {
     private String intituleP;
     private String description;
     private HashSet<Competence> competencesNecessaire;
+    private Membre responsable;
 
     //Consctructeur
-    public Projet(String intituleP, String description) {
+    public Projet(Membre responsable, String intituleP, String description) {
         this.intituleP = intituleP;
         this.description = description;
         this.competencesNecessaire = new HashSet<>();
+        this.responsable = responsable;
     }
 
     // Getters & Setters
@@ -35,5 +36,12 @@ public class Projet {
     }
     public void setCompetencesNecessaire(HashSet<Competence> competencesNecessaire) {
         this.competencesNecessaire = competencesNecessaire;
+    }
+
+    public Membre getResponsable() {
+        return responsable;
+    }
+    public void setResponsable(Membre responsable) {
+        this.responsable = responsable;
     }
 }

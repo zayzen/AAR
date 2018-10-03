@@ -12,8 +12,10 @@
 
 <div>
     <a href="/goToCreerProjet"> Creer un nouveau projet </a>
+    <a href="/goToAjouterCompetence"> Ajouter une nouvelle compétence </a>
 
 </div>
+<div>
 <table>
     <tr>
         <th>Mes Compétences</th>
@@ -32,16 +34,16 @@
 
     </tr>
 </table>
-
-
+</div>
+<div>
 <table>
     <tr>
-        <th>Mes Projets</th>
+        <th>Les projets dont je suis responsable : </th>
     </tr>
     <tr>
         <td>Intitulé</td>
         <td>Description</td>
-        <td></td>
+    </tr>
         <c:forEach items="${membreCourant.mesProjets}" var="projet">
     <tr>
         <td>${projet.intituleP}</td>
@@ -53,6 +55,26 @@
 
 </table>
 
+    <table>
+        <tr>
+            <th>Les projets auquels je partiticpe:</th>
+        </tr>
+        <tr>
+            <td>Intitulé</td>
+            <td>Description</td>
+        </tr>
+            <c:forEach items="${membreCourant.mesParticipations}" var="projetp">
+        <tr>
+            <td>${projetp.intituleP}</td>
+
+            <td>${projetp.description}</td>
+
+        </tr>
+        </c:forEach>
+
+    </table>
+</div>
+</div>
 
 </body>
 </html>
