@@ -2,17 +2,17 @@
 <%--
   Created by IntelliJ IDEA.
   User: Muhammed
-  Date: 01/10/2018
-  Time: 20:55
+  Date: 05/10/2018
+  Time: 11:51
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Ajout Compétence</title>
+    <title>Modifier Competence</title>
+</head>
 <body>
-<h1> Ajouter une compétence </h1>
-<form action="/ajouterCompetence" method="post">
+<form action="/modiferCompetence" method="post">
     <p> Choisir une compétence :
         <select name="competence">
             <c:forEach items="${lesCompetences}" var="choixC">
@@ -30,9 +30,7 @@
         </select>
     </p>
     <p> Commentaire : </p> <input type="text" name="commentaire"/>
-
     <button type="submit"> Valider</button>
-
 </form>
 </body>
 </html>

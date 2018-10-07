@@ -5,36 +5,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
     <title>Menu</title>
 <body>
 <h1> Menu </h1>
 <h1> Bienvenue ${membreCourant.login}</h1>
-
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Menu</li>
+    </ol>
+</nav>
 <div>
-    <a href="/goToCreerProjet"> Creer un nouveau projet </a>
-    <a href="/goToAjouterCompetence"> Ajouter une nouvelle compétence </a>
+    <p><a href="/goToCreerProjet"> Creer un nouveau projet </a></p>
+    <p><a href="/goToMesCompetences"> Ajouter/Modifier mes compétences </a></p>
+    <p><a href="/deconnexion"> Deconnexion </a></p>
 
 </div>
-<div>
-<table>
-    <tr>
-        <th>Mes Compétences</th>
-    </tr>
-    <tr>
-        <td>Intitulé</td>
-        <td>Niveau</td>
-        <td>Commentaire</td>
-        <c:forEach items="${membreCourant.mesCompetences}" var="competence">
-    <tr>
-        <td>${competence.competence.intituleC}</td>
-        <td>${competence.niveau}</td>
-        <td>${competence.commentaire}</td>
-    </tr>
-    </c:forEach>
 
-    </tr>
-</table>
-</div>
 <div>
 <table>
     <tr>

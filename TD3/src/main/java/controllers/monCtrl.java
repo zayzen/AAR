@@ -19,12 +19,13 @@ public class monCtrl {
 
     // Redirection
     @GetMapping(value = "/")
-    public String root() {
+    public String root(Model model) {
+        model.addAttribute("mLogin", new LoginForm());
         return "index";
     }
 
     @GetMapping(value = "/goToInscription")
-    public String goToInscription(Model model) {
+    public String goToInscription() {
         return "inscription";
     }
 
@@ -34,10 +35,23 @@ public class monCtrl {
         return "creerProjet";
     }
 
-    @GetMapping(value = "/goToAjouterCompetence")
-    public String goToAjouterCompetence(Model model) {
+    @GetMapping(value = "/goToMesCompetences")
+    public String goTogoToMesCompetences(Model model) {
         model.addAttribute("lesCompetences",maFacade.getLesCompetences());
-        return "ajouterCompetence";
+        return "mesCompetences";
+    }
+
+    @GetMapping(value = "/deconnexion")
+    public String deconnexion(Model model) {
+        int a = 0;
+        model.asMap().remove("membreCourant");
+        model.addAttribute("mLogin", new LoginForm());
+        return "index";
+    }
+
+    @GetMapping(value = "/goToMenu")
+    public String goToMenu(Model model) {
+        return "menu";
     }
 
 
@@ -45,6 +59,7 @@ public class monCtrl {
     @PostMapping(value = "/connexion")
     public String loginsimple(LoginForm aConnecter, Model model) {
 
+        model.addAttribute("mlogin", new LoginForm());
         String login = aConnecter.getLogin();
         String mdp = aConnecter.getMotdepasse();
         boolean co = maFacade.connexion(login,mdp);
@@ -106,7 +121,26 @@ public class monCtrl {
             }
             return "menu";
         }
-        return "ajouterCompetence";
+        return "mesCompetences";
+
+    }
+
+    @PostMapping(value = "/supprimerCompetence")
+    public String supprimerCompetence(@SessionAttribute(value="membreCourant", required = true) Membre m,
+                                    CompetenceForm p){
+        String competence = p.getCompetence();
+        String niveau = p.getNiveau();
+        String commentaire = p.getCommentaire();
+
+        if(null != competence){
+            Competence aAjouter = maFacade.getCompetenceByIntitule(competence);
+            if(!m.getMesCompetences().contains(aAjouter)){
+                CompetenceMembre cm = new CompetenceMembre(Integer.valueOf(niveau),commentaire,aAjouter);
+                m.getMesCompetences().add(cm);
+            }
+            return "menu";
+        }
+        return "mesCompetences";
 
     }
 

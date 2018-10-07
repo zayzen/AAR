@@ -12,6 +12,10 @@
     <title>Création Projet</title>
 <body>
 <h1> Création Projet</h1>
+
+<div>
+    <a href="/goToMenu"> Retour au menu </a>
+</div>
 <form action="/creerProjet" method="post">
     <p> Intitulé : </p> <input type="text" name="intitule"/>
     <p> Description : </p> <input type="text" name="description"/>
